@@ -12,7 +12,7 @@ import static constant.LottoConstants.*;
 public class LottoController {
 
     private static LottoMachine lottoMachine;
-    private static WinnigNumbers winningNumbers;
+    private static WinningNumbers winningNumbers;
     private static List<Lotto> lottos;
     private static Statistics statistics;
     private static int paymentAmount;
@@ -55,9 +55,9 @@ public class LottoController {
         return paymentAmount / LOTTO_PRICE;
     }
 
-    public WinnigNumbers createWinningNumbers(String input, Bonus bonus) {
+    public WinningNumbers createWinningNumbers(String input, Bonus bonus) {
         String[] number = input.replaceAll(" ", "").split(",");
-        return new WinnigNumbers(new Numbers(Arrays.stream(number).map(Integer::parseInt).collect(Collectors.toList()), true), bonus);
+        return new WinningNumbers(new Numbers(Arrays.stream(number).map(Integer::parseInt).collect(Collectors.toList()), true), bonus);
     }
 
     private void generateLotto() {
