@@ -1,5 +1,7 @@
 package model;
 
 public interface LottoMachine {
-    Numbers extractLottoNumbers();
+    Lotto drawLotto();
+
+    LottoList drawMaximumLottoByMoney(Money money);
 }

@@ -1,34 +1,39 @@
 package view;
 
-import constant.Reward;
-import model.Lotto;
-import model.Statistics;
+import constant.LottoRankInfo;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import static constant.LottoConstants.*;
 
 public class OutputView {
 
-    private OutputView() {
-    }
+	public static void printNumOfLotto(int numOfLotto) {
+		System.out.println(numOfLotto + LOTTO_AMOUNT_MESSAGE);
+	}
 
-    public static void printPaymentAmount(int amount) {
-        System.out.println(amount + AMOUNT_MESSAGE + "\n");
-    }
+	public static void printLottoNumbers(List<List<Integer>> lottolist) {
+		lottolist.forEach(System.out::println);
+		System.out.println();
+	}
 
-    public static void printLottosNumbers(List<Lotto> lottos) {
-        for(Lotto lotto : lottos){
-            System.out.println(lotto.getNumbers().getNumbers());
-        }
-        System.out.println("\n");
-    }
+	public static void printLottoResult(Map<LottoRankInfo, Integer> lottoResult, double ratio) {
+		System.out.println(STATISTICS_MESSAGE);
 
-    public static void printResultList(Statistics statistics) {
-        System.out.println(STATISTICS_MESSAGE);
-        System.out.printf(RESULT_LIST_MESSAGE, 3, Reward.FIFTH.getPrice(), statistics.getResult().get(Reward.FIFTH));
-        System.out.printf(RESULT_LIST_MESSAGE, 4, Reward.FOURTH.getPrice(), statistics.getResult().get(Reward.FOURTH));
-        System.out.printf(RESULT_LIST_MESSAGE, 5, Reward.THIRD.getPrice(), statistics.getResult().get(Reward.THIRD));
-        System.out.printf(RESULT_LIST_MESSAGE, 5, Reward.SECOND.getPrice(), statistics.getResult().get(Reward.SECOND));
-        System.out.printf(RESULT_LIST_MESSAGE, 6, Reward.FIRST.getPrice(), statistics.getResult().get(Reward.FIRST));
-        System.out.printf(RESULT_REWARD_RATE, statistics.getStatistics());
-    }
+		Arrays.stream(LottoRankInfo.values())
+			.forEach(rank -> printRankAggregation(rank, lottoResult.get(rank)));
+
+		System.out.printf(RESULT_REWARD_RATE, ratio);
+	}
+
+	private static void printRankAggregation(LottoRankInfo rankInfo, int numOfWinning){
+		if (rankInfo.getBonus()){
+			System.out.printf(LOTTO_RESULT_WITH_BONUS, rankInfo.getMatchCount(), rankInfo.getPrize(), numOfWinning);
+		}
+		if (!rankInfo.getBonus()){
+			System.out.printf(LOTTO_RESULT_WITHOUT_BONUS, rankInfo.getMatchCount(), rankInfo.getPrize(), numOfWinning);
+		}
+	}
 }
