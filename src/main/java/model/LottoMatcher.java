@@ -9,8 +9,8 @@ public class LottoMatcher {
 		this.lottoResult = new LottoResult();
 	}
 
-	public void matchLottoList(LottoList lottoList) {
-		lottoList.getLottoList().forEach(this::matchLotto);
+	public void matchLottoList(Lottos lottos) {
+		lottos.getLottos().forEach(this::matchLotto);
 	}
 
 	private void matchLotto(Lotto lotto){
