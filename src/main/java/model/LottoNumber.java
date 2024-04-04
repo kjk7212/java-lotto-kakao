@@ -19,10 +19,6 @@ public class LottoNumber implements Comparable<LottoNumber> {
 		this.lottoNumber = lottoNumber;
 	}
 
-	public boolean isSame(LottoNumber lottoNumber) {
-		return this.lottoNumber == lottoNumber.lottoNumber;
-	}
-
 	public int getLottoNumber() {
 		return lottoNumber;
 	}
@@ -34,9 +30,14 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
 	@Override
 	public boolean equals(Object object) {
-		if (this == object) return true;
-		if (object == null || getClass() != object.getClass()) return false;
-		LottoNumber lottoNumber = (LottoNumber) object;
+		if (this == object) {
+			return true;
+		}
+		if (object == null || getClass() != object.getClass()) {
+			return false;
+		}
+
+		LottoNumber lottoNumber = (LottoNumber)object;
 		return this.lottoNumber == lottoNumber.lottoNumber;
 	}
 
