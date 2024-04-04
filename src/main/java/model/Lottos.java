@@ -22,7 +22,19 @@ public class Lottos {
 			.collect(Collectors.toList());
 	}
 
-	public List<Lotto> getLottoList() {
-		return Collections.unmodifiableList(lottoList);
+	public void addLotto(Lotto lotto) {
+		lottos.add(lotto);
+	}
+
+	public void addLotto(Lottos lottos) {
+		this.lottos.addAll(lottos.lottos);
+	}
+
+	public List<Lotto> getLottos() {
+		return Collections.unmodifiableList(lottos);
+	}
+
+	public int getLottosSize() {
+		return this.lottos.size();
 	}
 }
