@@ -24,9 +24,9 @@ public class LottoMachineImpl implements LottoMachine {
 		return new Lotto(drewLottoNumbers);
 	}
 
-	public Lottos drawMaximumLottoByMoney(Money money) {
+	public List<Lotto> drawMaximumLottoByMoney(Money money) {
 		return IntStream.range(0, money.numOfLottoCanBuy())
 			.mapToObj(i -> drawLotto())
-			.collect(Collectors.collectingAndThen(Collectors.toList(), Lottos::new));
+			.collect(Collectors.toList());
 	}
 }
