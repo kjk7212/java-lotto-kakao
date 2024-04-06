@@ -22,8 +22,7 @@ public class Lotto {
 	}
 
 	public Boolean hasLottoNumber(LottoNumber lottoNumber) {
-		return lottoNumbers.stream()
-			.anyMatch(number -> number.equals(lottoNumber));
+		return lottoNumbers.contains(lottoNumber);
 	}
 
 	public int matchLottoNumbers(Lotto lotto) {
