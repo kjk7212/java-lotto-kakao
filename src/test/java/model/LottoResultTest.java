@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import constant.LottoRankInfo;
+import constant.LottoRank;
 
 public class LottoResultTest {
 
@@ -26,11 +26,11 @@ public class LottoResultTest {
 		lottoResult.updateResult(5, true);
 		lottoResult.updateResult(5, false);
 
-		Map<LottoRankInfo, Integer> result = lottoResult.getResult();
+		Map<LottoRank, Integer> result = lottoResult.getResult();
 		System.out.println(result);
-		assertThat(result.get(LottoRankInfo.FIRST)).isEqualTo(1);
-		assertThat(result.get(LottoRankInfo.SECOND)).isEqualTo(1);
-		assertThat(result.get(LottoRankInfo.THIRD)).isEqualTo(1);
+		assertThat(result.get(LottoRank.FIRST)).isEqualTo(1);
+		assertThat(result.get(LottoRank.SECOND)).isEqualTo(1);
+		assertThat(result.get(LottoRank.THIRD)).isEqualTo(1);
 	}
 
 	@Test
