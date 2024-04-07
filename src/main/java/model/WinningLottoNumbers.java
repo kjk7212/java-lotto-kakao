@@ -11,7 +11,7 @@ public class WinningLottoNumbers {
 
 	public WinningLottoNumbers(List<Integer> winningNumbers, LottoNumber bonus) {
 		this.winningNumbers = new Lotto(winningNumbers.stream()
-			.map(LottoNumber::new)
+			.map(LottoNumber::getLottoNumberFromPool)
 			.collect(Collectors.toList()));
 
 		validateBonusNotInWinningNumbers(this.winningNumbers, bonus);

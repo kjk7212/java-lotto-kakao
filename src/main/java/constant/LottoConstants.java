@@ -1,10 +1,21 @@
 package constant;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import model.LottoNumber;
+
 public class LottoConstants {
+
 	public static final int LOTTO_PRICE = 1_000;
 	public static final int MAX_LOTTO_NUMBER_SIZE = 6;
 	public static final int NUMBER_LOWER_BOUND = 1;
 	public static final int NUMBER_UPPER_BOUND = 45;
+
+	public static final List<LottoNumber> lottoNumberPool = IntStream.rangeClosed(NUMBER_LOWER_BOUND, NUMBER_UPPER_BOUND)
+		.mapToObj(LottoNumber::new)
+		.collect(Collectors.toList());
 
 	public static final String LOTTO_MANUAL_AUTO_AMOUNT_MESSAGE = "\n수동으로 %d장, 자동으로 %d개를 구매했습니다.\n";
 	public static final String STATISTICS_MESSAGE = "\n당첨 통계\n---------";

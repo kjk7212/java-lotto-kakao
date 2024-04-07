@@ -13,7 +13,7 @@ class LottoNumberTest {
 	void notNumberTest() {
 		assertThatExceptionOfType(IllegalArgumentException.class)
 			.isThrownBy(() ->
-				lottoNumber = new LottoNumber("테스트")
+				lottoNumber = LottoNumber.getLottoNumberFromPool("테스트")
 			);
 
 	}
@@ -23,15 +23,15 @@ class LottoNumberTest {
 	void numberRangeTest() {
 		assertThatExceptionOfType(IllegalArgumentException.class)
 			.isThrownBy(() ->
-				lottoNumber = new LottoNumber(46)
+				lottoNumber = LottoNumber.getLottoNumberFromPool(46)
 			);
 	}
 
 	@Test
 	@DisplayName("같은_숫자_확인_테스트")
 	void matchSameNumberTest() {
-		lottoNumber = new LottoNumber(45);
-		LottoNumber lottoNumber2 = new LottoNumber(45);
+		lottoNumber = LottoNumber.getLottoNumberFromPool(45);
+		LottoNumber lottoNumber2 = LottoNumber.getLottoNumberFromPool(45);
 
 		assertThat(lottoNumber2.equals(lottoNumber)).isEqualTo(true);
 	}
@@ -39,8 +39,8 @@ class LottoNumberTest {
 	@Test
 	@DisplayName("다른_숫자_확인_테스트")
 	void matchDifferentNumber() {
-		lottoNumber = new LottoNumber(45);
-		LottoNumber lottoNumber2 = new LottoNumber(44);
+		lottoNumber = LottoNumber.getLottoNumberFromPool(45);
+		LottoNumber lottoNumber2 = LottoNumber.getLottoNumberFromPool(44);
 
 		assertThat(lottoNumber2.equals(lottoNumber)).isEqualTo(false);
 	}

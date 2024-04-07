@@ -7,7 +7,6 @@ import static view.OutputView.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import model.Lotto;
 import model.LottoMachine;
@@ -69,7 +68,7 @@ public class LottoGame {
 
 	private Lotto makeLottoFromUserInput(String lottoNumbers) {
 		return new Lotto(parseNumbersWithComma(lottoNumbers).stream()
-			.map(LottoNumber::new)
+			.map(LottoNumber::getLottoNumberFromPool)
 			.collect(Collectors.toList()));
 	}
 
@@ -80,7 +79,7 @@ public class LottoGame {
 
 	private WinningLottoNumbers settingWinningNumbers() {
 		String winningNumbersUserInput = readWinningNumbers();
-		LottoNumber bonus = new LottoNumber(readBonusNumber());
+		LottoNumber bonus = LottoNumber.getLottoNumberFromPool(readBonusNumber());
 		return new WinningLottoNumbers(parseNumbersWithComma(winningNumbersUserInput), bonus);
 	}
 

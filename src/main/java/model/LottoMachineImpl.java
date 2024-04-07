@@ -10,10 +10,6 @@ import static constant.LottoConstants.*;
 
 public class LottoMachineImpl implements LottoMachine {
 
-	private static final List<LottoNumber> lottoNumberPool = IntStream.rangeClosed(1, 45)
-		.mapToObj(LottoNumber::new)
-		.collect(Collectors.toList());
-
 	public LottoMachineImpl() {
 	}
 
