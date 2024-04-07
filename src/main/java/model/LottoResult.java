@@ -17,7 +17,7 @@ public class LottoResult {
 
 	public void updateResult(int correctNumbersCount, boolean bonus) {
 		LottoRank lottoRank = rankMatch(correctNumbersCount, bonus);
-		result.put(lottoRank, result.getOrDefault(lottoRank, 0) + 1);
+		result.compute(lottoRank, (rank, count) -> count == null ? 1 : count + 1);
 	}
 
 	public Money getLottoPrize() {
