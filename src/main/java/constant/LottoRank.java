@@ -1,11 +1,10 @@
 package constant;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public enum LottoRank {
 
-	BLANK(0,0,false),
+	BLANK(0, 0, false),
 	FIFTH(5_000, 3, false),
 	FOURTH(50_000, 4, false),
 	THIRD(1_500_000, 5, false),
@@ -34,10 +33,24 @@ public enum LottoRank {
 		return bonus;
 	}
 
-	public static LottoRank rankMatch(int correctNumbersCount, boolean bonus){
+	public static LottoRank matchRank(int correctNumbersCount, boolean bonus) {
+		LottoRank lottoRank = matchNumberCount(correctNumbersCount);
+		return matchBonus(lottoRank, bonus);
+	}
+
+	private static LottoRank matchNumberCount(int correctNumbersCount) {
 		return Arrays.stream(values())
-			.sorted(Comparator.comparingInt(LottoRank::getPrize).reversed())
-			.filter(lottoRank -> (lottoRank.getMatchCount() == correctNumbersCount) && (!lottoRank.getBonus() || bonus))
+			.filter(lottoRank -> (lottoRank.getMatchCount() == correctNumbersCount))
 			.findFirst().orElse(BLANK);
+	}
+
+	private static LottoRank matchBonus(LottoRank lottoRank, boolean bonus) {
+		if (!bonus) {
+			return lottoRank;
+		}
+
+		return Arrays.stream(values())
+			.filter(rank -> (rank.getBonus() && rank.getPrize() > lottoRank.getPrize() && rank.getMatchCount() == lottoRank.getMatchCount()))
+			.findFirst().orElse(lottoRank);
 	}
 }
