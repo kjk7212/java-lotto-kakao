@@ -5,6 +5,7 @@ import static constant.LottoRank.*;
 import constant.LottoRank;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class LottoResult {
@@ -12,7 +13,7 @@ public class LottoResult {
 
 	public LottoResult() {
 		result = Arrays.stream(LottoRank.values())
-			.collect(Collectors.toMap(lottoRank -> lottoRank, lottoRank -> 0));
+			.collect(Collectors.toMap(Function.identity(), lottoRank -> 0));
 	}
 
 	public void updateResult(int correctNumbersCount, boolean bonus) {
